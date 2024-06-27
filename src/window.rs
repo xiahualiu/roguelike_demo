@@ -13,7 +13,6 @@ impl Plugin for WindowPlugin {
 fn window_setup(mut commands: Commands, mut windows: Query<&mut Window>) {
     // Set windows size
     let mut window = windows.single_mut();
-    window.resolution.set(1920.0, 1080.0);
     window.title = String::from("Roguelike demo");
 
     // Set camera
