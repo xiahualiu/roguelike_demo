@@ -1,4 +1,4 @@
-use bevy::asset::{RecursiveDependencyLoadState, UntypedAssetId};
+use bevy::asset::{AssetMetaCheck, RecursiveDependencyLoadState, UntypedAssetId};
 use bevy::prelude::*;
 
 // Game loading states
@@ -25,6 +25,7 @@ impl Plugin for AssetLoaderPlugin {
     fn build(&self, app: &mut App) {
         app.init_state::<AssetLoadingState>()
             .insert_resource(LoadAssetIdVec(Vec::new()))
+            .insert_resource(AssetMetaCheck::Never)
             .add_systems(OnEnter(AssetLoadingState::Loading), load_assets)
             .add_systems(
                 Update,
