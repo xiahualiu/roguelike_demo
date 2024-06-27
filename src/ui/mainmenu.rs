@@ -1,4 +1,4 @@
-use bevy::{app::AppExit, prelude::*};
+use bevy::prelude::*;
 
 use crate::assetloader::{AssetLoadingState, UiFont};
 
@@ -11,7 +11,7 @@ impl Plugin for MainMenuPlugin {
         app.add_systems(OnExit(AssetLoadingState::DoneLoading), despawn_main_menu);
         app.add_systems(
             Update,
-            button_interaction.run_if(in_state(AssetLoadingState::DoneLoading)),
+            play_button_interaction.run_if(in_state(AssetLoadingState::DoneLoading)),
         );
     }
 }
@@ -20,10 +20,9 @@ impl Plugin for MainMenuPlugin {
 struct MainMenu;
 
 #[derive(Component)]
-struct PlayButton;
-
-#[derive(Component)]
-struct QuitButton;
+struct PlayButton {
+    pressed: bool,
+}
 
 fn spawn_main_menu(mut commands: Commands, font_handle_res: Res<UiFont>) {
     // Main node
@@ -82,7 +81,7 @@ fn spawn_main_menu(mut commands: Commands, font_handle_res: Res<UiFont>) {
             // Spawn Play button
             parent
                 .spawn((
-                    PlayButton,
+                    PlayButton { pressed: false },
                     ButtonBundle {
                         style: Style {
                             width: Val::Px(300.0),
@@ -112,39 +111,6 @@ fn spawn_main_menu(mut commands: Commands, font_handle_res: Res<UiFont>) {
                         ..default()
                     });
                 });
-            // Spawn Quit button
-            parent
-                .spawn((
-                    QuitButton,
-                    ButtonBundle {
-                        style: Style {
-                            width: Val::Px(300.0),
-                            height: Val::Px(100.0),
-                            justify_content: JustifyContent::Center,
-                            align_items: AlignItems::Center,
-                            ..default()
-                        },
-                        background_color: Color::YELLOW_GREEN.into(),
-                        ..default()
-                    },
-                ))
-                .with_children(|parent| {
-                    parent.spawn(TextBundle {
-                        text: Text {
-                            sections: vec![TextSection {
-                                value: String::from("Quit"),
-                                style: TextStyle {
-                                    font: font_handle_res.0.clone(),
-                                    font_size: 40.0,
-                                    color: Color::BLUE,
-                                },
-                            }],
-                            justify: JustifyText::Center,
-                            ..default()
-                        },
-                        ..default()
-                    });
-                });
         });
 }
 
@@ -154,31 +120,25 @@ fn despawn_main_menu(mut commands: Commands, window_query: Query<Entity, With<Ma
 }
 
 #[allow(clippy::type_complexity)]
-fn button_interaction(
-    mut botton_query: Query<
-        (
-            &Interaction,
-            &mut BackgroundColor,
-            Option<&PlayButton>,
-            Option<&QuitButton>,
-        ),
+fn play_button_interaction(
+    mut play_botton_query: Query<
+        (&Interaction, &mut BackgroundColor, &mut PlayButton),
         Changed<Interaction>,
     >,
     mut next_state: ResMut<NextState<AssetLoadingState>>,
-    mut app_exit_writer: EventWriter<AppExit>,
 ) {
-    for (interact, mut backgroundcolor, is_playbutton, is_quitbutton) in &mut botton_query {
+    for (interact, mut backgroundcolor, mut playbutton) in &mut play_botton_query {
         match interact {
-            Interaction::Hovered => *backgroundcolor = Color::ALICE_BLUE.into(),
             Interaction::Pressed => {
-                if is_playbutton.is_some() {
+                *backgroundcolor = Color::ALICE_BLUE.into();
+                playbutton.pressed = true;
+            }
+            _ => {
+                *backgroundcolor = Color::YELLOW_GREEN.into();
+                if playbutton.pressed {
                     next_state.set(AssetLoadingState::DoneLoading);
                 }
-                if is_quitbutton.is_some() {
-                    app_exit_writer.send(AppExit);
-                }
             }
-            Interaction::None => *backgroundcolor = Color::YELLOW_GREEN.into(),
         }
     }
 }
