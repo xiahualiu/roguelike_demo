@@ -153,8 +153,9 @@ fn despawn_main_menu(mut commands: Commands, window_query: Query<Entity, With<Ma
     commands.entity(entity).despawn_recursive();
 }
 
+#[allow(clippy::type_complexity)]
 fn button_interaction(
-    mut background_query: Query<
+    mut botton_query: Query<
         (
             &Interaction,
             &mut BackgroundColor,
@@ -166,14 +167,14 @@ fn button_interaction(
     mut next_state: ResMut<NextState<AssetLoadingState>>,
     mut app_exit_writer: EventWriter<AppExit>,
 ) {
-    for (interact, mut backgroundcolor, is_playbutton, is_quitbutton) in &mut background_query {
+    for (interact, mut backgroundcolor, is_playbutton, is_quitbutton) in &mut botton_query {
         match interact {
             Interaction::Hovered => *backgroundcolor = Color::ALICE_BLUE.into(),
             Interaction::Pressed => {
-                if let Some(_) = is_playbutton {
+                if is_playbutton.is_some() {
                     next_state.set(AssetLoadingState::DoneLoading);
                 }
-                if let Some(_) = is_quitbutton {
+                if is_quitbutton.is_some() {
                     app_exit_writer.send(AppExit);
                 }
             }
