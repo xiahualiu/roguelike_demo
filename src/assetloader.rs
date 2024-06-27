@@ -89,9 +89,7 @@ fn check_all_load_status(
     RecursiveDependencyLoadState::Loaded
 }
 
-
 /// Debug use
-fn setup_state(
-    mut next_load_state: ResMut<NextState<AssetLoadingState>>) {
+fn setup_state(mut next_load_state: ResMut<NextState<AssetLoadingState>>) {
     next_load_state.set(AssetLoadingState::Loading);
 }
