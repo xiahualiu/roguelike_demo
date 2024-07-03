@@ -72,7 +72,7 @@ fn spawn_disclaimer_menu(mut commands: Commands, normal_font_handle_res: Res<UiN
                 ButtonBundle {
                     style: Style {
                         width: Val::Percent(60.0),
-                        height: Val::Px(100.0),
+                        height: Val::Px(50.0),
                         justify_content: JustifyContent::Center,
                         align_items: AlignItems::Center,
                         ..default()

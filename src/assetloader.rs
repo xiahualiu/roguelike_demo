@@ -141,7 +141,7 @@ fn spawn_loading_menu(mut commands: Commands, bevy_logo_res: Res<BevyLogoImage>)
             style: Style {
                 width: Val::Px(50.0),
                 height: Val::Px(50.0),
-                right: Val::Px(20.0),
+                right: Val::Px(10.0),
                 ..default()
             },
             image: UiImage {
@@ -221,7 +221,7 @@ fn spawn_loading_menu(mut commands: Commands, bevy_logo_res: Res<BevyLogoImage>)
                     flex_direction: FlexDirection::Row,
                     justify_content: JustifyContent::FlexStart,
                     align_items: AlignItems::Center,
-                    width: Val::Percent(60.0),
+                    width: Val::Percent(80.0),
                     height: Val::Px(50.0),
                     ..default()
                 },

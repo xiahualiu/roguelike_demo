@@ -80,7 +80,7 @@ fn spawn_main_menu(
                 ButtonBundle {
                     style: Style {
                         width: Val::Percent(60.0),
-                        height: Val::Px(100.0),
+                        height: Val::Px(50.0),
                         justify_content: JustifyContent::Center,
                         align_items: AlignItems::Center,
                         ..default()
@@ -96,7 +96,7 @@ fn spawn_main_menu(
                             value: String::from("开始游戏"),
                             style: TextStyle {
                                 font: normal_font_handle_res.0.clone(),
-                                font_size: 40.0,
+                                font_size: 30.0,
                                 color: Color::BLUE,
                             },
                         }],
