@@ -3,11 +3,14 @@ use bevy::prelude::*;
 
 // Plugin crates
 mod assetloader;
+mod gamestate;
 mod ui;
 mod window;
 
 // Use declarations
-use assetloader::{AssetLoaderPlugin, AssetLoadingState};
+use assetloader::AssetLoaderPlugin;
+use gamestate::GameStatePlugin;
+use ui::disclaimermenu::DisclaimerMenuPlugin;
 use ui::mainmenu::MainMenuPlugin;
 use window::WindowPlugin;
 
@@ -18,10 +21,11 @@ pub struct GamePlugin;
 
 impl Plugin for GamePlugin {
     fn build(&self, app: &mut App) {
-        app.init_state::<AssetLoadingState>()
-            .add_plugins(AssetLoaderPlugin)
+        app.add_plugins(AssetLoaderPlugin)
             .add_plugins(MainMenuPlugin)
-            .add_plugins(WindowPlugin);
+            .add_plugins(DisclaimerMenuPlugin)
+            .add_plugins(WindowPlugin)
+            .add_plugins(GameStatePlugin);
 
         #[cfg(debug_assertions)]
         {
