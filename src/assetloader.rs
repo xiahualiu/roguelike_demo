@@ -139,9 +139,9 @@ fn spawn_loading_menu(mut commands: Commands, bevy_logo_res: Res<BevyLogoImage>)
     let spawn_bevy_icon_image = |parent: &mut ChildBuilder| {
         parent.spawn(ImageBundle {
             style: Style {
-                width: Val::Px(100.0),
-                height: Val::Px(100.0),
-                right: Val::Px(30.0),
+                width: Val::Px(50.0),
+                height: Val::Px(50.0),
+                right: Val::Px(20.0),
                 ..default()
             },
             image: UiImage {
@@ -163,7 +163,7 @@ fn spawn_loading_menu(mut commands: Commands, bevy_logo_res: Res<BevyLogoImage>)
                 sections: vec![TextSection {
                     value: String::from("Powered by Bevy Engine."),
                     style: TextStyle {
-                        font_size: 50.0,
+                        font_size: 20.0,
                         color: Color::GRAY,
                         ..default()
                     },

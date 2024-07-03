@@ -40,7 +40,7 @@ fn spawn_main_menu(
                     value: String::from("游戏测试"),
                     style: TextStyle {
                         font: bold_font_handle_res.0.clone(),
-                        font_size: 120.0,
+                        font_size: 100.0,
                         color: Color::GRAY,
                     },
                 }],
@@ -60,7 +60,7 @@ fn spawn_main_menu(
                     justify_content: JustifyContent::Center,
                     align_items: AlignItems::Center,
                     row_gap: Val::Px(10.0),
-                    width: Val::Percent(100.0),
+                    width: Val::Percent(80.0),
                     height: Val::Percent(50.0),
                     ..default()
                 },
@@ -79,7 +79,7 @@ fn spawn_main_menu(
                 PlayButton { pressed: false },
                 ButtonBundle {
                     style: Style {
-                        width: Val::Percent(30.0),
+                        width: Val::Percent(60.0),
                         height: Val::Px(100.0),
                         justify_content: JustifyContent::Center,
                         align_items: AlignItems::Center,

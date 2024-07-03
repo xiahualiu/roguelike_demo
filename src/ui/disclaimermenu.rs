@@ -32,7 +32,7 @@ fn spawn_disclaimer_menu(mut commands: Commands, normal_font_handle_res: Res<UiN
                     value: String::from("声明：本游戏含有成人内容，包含并不仅限于关于性的细节文字和图像描写，和裸露图片。所有游玩本游戏的玩家需要年满18周岁，请确认你已经年满18周岁!"),
                     style: TextStyle {
                         font: normal_font_handle_res.0.clone(),
-                        font_size: 40.0,
+                        font_size: 30.0,
                         color: Color::GRAY,
                     },
                 }],
@@ -52,7 +52,7 @@ fn spawn_disclaimer_menu(mut commands: Commands, normal_font_handle_res: Res<UiN
                     justify_content: JustifyContent::Center,
                     align_items: AlignItems::Center,
                     row_gap: Val::Px(10.0),
-                    width: Val::Percent(60.0),
+                    width: Val::Percent(80.0),
                     height: Val::Percent(50.0),
                     ..default()
                 },
@@ -71,7 +71,7 @@ fn spawn_disclaimer_menu(mut commands: Commands, normal_font_handle_res: Res<UiN
                 AcceptTOSButton { pressed: false },
                 ButtonBundle {
                     style: Style {
-                        width: Val::Percent(30.0),
+                        width: Val::Percent(60.0),
                         height: Val::Px(100.0),
                         justify_content: JustifyContent::Center,
                         align_items: AlignItems::Center,
@@ -88,7 +88,7 @@ fn spawn_disclaimer_menu(mut commands: Commands, normal_font_handle_res: Res<UiN
                             value: String::from("我确认我已年满18周岁"),
                             style: TextStyle {
                                 font: normal_font_handle_res.0.clone(),
-                                font_size: 40.0,
+                                font_size: 30.0,
                                 color: Color::BLUE,
                             },
                         }],
