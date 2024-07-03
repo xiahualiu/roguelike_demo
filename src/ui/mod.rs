@@ -1,2 +1,2 @@
-pub mod mainmenu;
 pub mod disclaimermenu;
+pub mod mainmenu;

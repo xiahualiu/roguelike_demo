@@ -134,11 +134,7 @@ fn update_load_bar(
     bar_query.get_single_mut().unwrap().width = Val::Percent(100.0 * percent);
 }
 
-fn spawn_loading_menu(
-    mut commands: Commands,
-    normal_font_handle_res: Res<UiNormalFont>,
-    bevy_logo_res: Res<BevyLogoImage>,
-) {
+fn spawn_loading_menu(mut commands: Commands, bevy_logo_res: Res<BevyLogoImage>) {
     // Spawn Bevy Icon Image and Text
     let spawn_bevy_icon_image = |parent: &mut ChildBuilder| {
         parent.spawn(ImageBundle {
@@ -167,9 +163,9 @@ fn spawn_loading_menu(
                 sections: vec![TextSection {
                     value: String::from("Powered by Bevy Engine."),
                     style: TextStyle {
-                        font: normal_font_handle_res.0.clone(),
                         font_size: 50.0,
                         color: Color::GRAY,
+                        ..default()
                     },
                 }],
                 justify: JustifyText::Left,
