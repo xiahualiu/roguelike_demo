@@ -85,7 +85,7 @@ fn spawn_disclaimer_menu(mut commands: Commands, normal_font_handle_res: Res<UiN
                 parent.spawn(TextBundle {
                     text: Text {
                         sections: vec![TextSection {
-                            value: String::from("我确认我已年满18周岁"),
+                            value: String::from("我已年满18周岁"),
                             style: TextStyle {
                                 font: normal_font_handle_res.0.clone(),
                                 font_size: 30.0,
