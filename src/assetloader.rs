@@ -156,7 +156,7 @@ fn spawn_loading_menu(mut commands: Commands, bevy_logo_res: Res<BevyLogoImage>)
         parent.spawn(TextBundle {
             style: Style {
                 justify_content: JustifyContent::FlexStart,
-                align_items: AlignItems::Center,
+                align_items: AlignItems::FlexStart,
                 ..default()
             },
             text: Text {
